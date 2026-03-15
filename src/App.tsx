@@ -302,6 +302,7 @@ export default function App() {
                   <p className="text-slate-400 text-sm">Pagamento Único</p>
                 </div>
                 <motion.button 
+                  onClick={() => window.location.href = 'https://checkout.comprasfacil.com.br/VCCL1O8SCVC6'}
                   animate={{ scale: [1, 1.03, 1] }}
                   transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                   className="w-full py-5 bg-green-500 hover:bg-green-600 text-white rounded-2xl font-bold text-xl shadow-lg shadow-green-200 transition-all transform hover:scale-105 active:scale-95"
