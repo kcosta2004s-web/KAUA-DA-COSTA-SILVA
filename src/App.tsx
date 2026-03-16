@@ -89,6 +89,19 @@ const TESTIMONIALS = [
   { name: "Cláudia Souza", city: "Belo Horizonte", text: "O suporte é excelente e o material chegou na hora. Vale cada centavo.", initial: "C", image: "https://i.imgur.com/ntF3ynC.png" },
 ];
 
+function getCheckoutUrl() {
+  const baseUrl = 'https://checkout.comprasfacil.com.br/VCCL1O8SCVC6';
+  const params = new URLSearchParams(window.location.search);
+  const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  const utmParams = new URLSearchParams();
+  utmKeys.forEach(key => {
+    const value = params.get(key);
+    if (value) utmParams.set(key, value);
+  });
+  const utmString = utmParams.toString();
+  return utmString ? `${baseUrl}?${utmString}` : baseUrl;
+}
+
 export default function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -302,7 +315,7 @@ export default function App() {
                   <p className="text-slate-400 text-sm">Pagamento Único</p>
                 </div>
                 <motion.button 
-                  onClick={() => window.location.href = 'https://checkout.comprasfacil.com.br/VCCL1O8SCVC6'}
+                  onClick={() => window.location.href = getCheckoutUrl()}
                   animate={{ scale: [1, 1.03, 1] }}
                   transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                   className="w-full py-5 bg-green-500 hover:bg-green-600 text-white rounded-2xl font-bold text-xl shadow-lg shadow-green-200 transition-all transform hover:scale-105 active:scale-95"
